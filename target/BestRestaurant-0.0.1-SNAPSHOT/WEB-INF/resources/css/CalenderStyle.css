@@ -1,0 +1,243 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Arimo', sans-serif;
+}  
+
+.calender{
+    text-align: center;    
+   
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 85vh;
+  }
+  
+  th {
+    height: 20px;
+    
+  }
+table, td, th {
+  table-layout:fixed;
+  overflow:hidden;
+  word-wrap:break-word;
+    background-color:#F3F1F5;
+    border: 1px dotted black;
+  }
+
+  /* .btn {
+    background: #ffffff;
+    background-image: -webkit-linear-gradient(top, #ffffff, #627b8a);
+    background-image: -moz-linear-gradient(top, #ffffff, #627b8a);
+    background-image: -ms-linear-gradient(top, #ffffff, #627b8a);
+    background-image: -o-linear-gradient(top, #ffffff, #627b8a);
+    background-image: linear-gradient(to bottom, #ffffff, #627b8a);
+    -webkit-border-radius: 11;
+    -moz-border-radius: 11;
+    border-radius: 11px;
+    font-family: Arial;
+    color: #050405;
+    font-size: 11px;
+    padding: 6px 19px 8px 19px;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background: #545454;
+    background-image: -webkit-linear-gradient(top, #545454, #fcfcfc);
+    background-image: -moz-linear-gradient(top, #545454, #fcfcfc);
+    background-image: -ms-linear-gradient(top, #545454, #fcfcfc);
+    background-image: -o-linear-gradient(top, #545454, #fcfcfc);
+    background-image: linear-gradient(to bottom, #545454, #fcfcfc);
+    text-decoration: none;
+  }
+   */
+  .btn {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 11px;
+    font-family: Arial;
+    color: #464660;
+    font-size: 11px;
+    background: #F3F1F5;
+    padding: 5px 5px 5px 5px;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background: #FEFFE2;
+    text-decoration: none;
+  }
+
+
+  .modal {
+    display: none;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    margin: auto;
+    padding: 20px;
+    border: 0.5px solid #888;
+    width: 50%;
+    background-color: white;
+    height: 20vh;
+  }
+  
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+  input{
+    margin-bottom: 4px;
+  }
+  #childdiv{
+    background-color:#E8F6EF;
+    padding-bottom: 1px;
+    border:0.5px dotted black;
+    margin: 1px;
+    color:#4B6587;
+  }
+
+
+  #view-data{
+    display: none;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+
+  }
+
+
+  #view-data-content{
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    background-color: white;
+    height: 20vh;
+  }
+
+  #fbtn{
+    float: right;
+  }
+
+
+  .childdiv3{
+    border: 1px solid black;
+    padding:3px;
+    margin-bottom: 5px;
+  
+  }
+
+
+  #update-data{
+    display: none;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+
+  }
+
+
+
+  #update-data-content{
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    background-color: white;
+    height: 20vh;
+  }
+
+  .viewbtn{
+    padding: 0px;
+    margin: 0px;
+    height: 0vh;
+    width: 0px;
+  }
+  img{
+    margin: 0px;
+  }
+.chckbtn{
+  height: 0px;
+  
+}
+
+#member{
+
+  display: none;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+
+}
+
+#member-content{
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  background-color: white;
+  height: 20vh;
+}
+.btnview{
+  position: relative;
+  top: 60%;
+  left: 140px;
+
+}
+
+.childdiv6{
+
+  border: 1px solid black;
+  padding:3px;
+  margin-bottom: 5px;
+
+}
