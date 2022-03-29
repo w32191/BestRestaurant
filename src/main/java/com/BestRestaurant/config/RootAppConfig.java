@@ -59,7 +59,6 @@ public class RootAppConfig {
     p.put("hibernate.show_sql", Boolean.TRUE);
     p.put("hibernate.format_sql", Boolean.TRUE);
     // p.put("hibernate.current_session_context_class", "thread");
-
     // p.put("hibernate.hbm2ddl.auto", "update"); //是否要由hibernate 創建table
     return p;
   }

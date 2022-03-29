@@ -121,6 +121,7 @@ public class MemberController {
     newAccount.setAccount(updateAccount);
     newAccount.setPerssion(updatePerssion);
 
+
     MemberBean newMember = new MemberBean();
     newMember.setId(updateId);
     newMember.setName(updateName);
@@ -129,6 +130,7 @@ public class MemberController {
     newMember.setTel(updateTel);
 
     newMember.setAccountBean(newAccount);
+
     boolean result = memberDataService.updateMember(newMember);
 
     if (result) {

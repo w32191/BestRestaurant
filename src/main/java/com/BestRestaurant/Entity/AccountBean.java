@@ -87,4 +87,16 @@ public class AccountBean {
   public void setPerssion(int perssion) {
     this.perssion = perssion;
   }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("AccountBean{");
+    sb.append("id=").append(id);
+    sb.append(", account='").append(account).append('\'');
+    sb.append(", pwd='").append(pwd).append('\'');
+    sb.append(", perssion=").append(perssion);
+    sb.append(", memberBean=").append(memberBean);
+    sb.append('}');
+    return sb.toString();
+  }
 }

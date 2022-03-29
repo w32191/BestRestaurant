@@ -20,9 +20,8 @@ public class MemberDao {
   public List<MemberBean> getAllMembers() {
     Session session = factory.getCurrentSession();
     String hql = "from MemberBean";
-    List<MemberBean> list = session.createQuery(hql).getResultList();
 
-    return list;
+    return (List<MemberBean>) session.createQuery(hql).getResultList();
   }// end of getAllMembers()
 
 
@@ -70,6 +69,7 @@ public class MemberDao {
     Session session = factory.getCurrentSession();
     try {
       session.saveOrUpdate(member);
+      System.out.println("update secces!!");
       return true;
     } catch (Exception e) {
       System.out.println("Soething wrong!!!!");

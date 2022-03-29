@@ -111,6 +111,17 @@ public class MemberBean {
     this.accountBean = accountBean;
   }
 
-
-
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("MemberBean{");
+    sb.append("id=").append(id);
+    sb.append(", name='").append(name).append('\'');
+    sb.append(", gender=").append(gender);
+    sb.append(", address='").append(address).append('\'');
+    sb.append(", tel='").append(tel).append('\'');
+    sb.append(", account_id=").append(account_id);
+    sb.append(", accountBean=").append(accountBean);
+    sb.append('}');
+    return sb.toString();
+  }
 }

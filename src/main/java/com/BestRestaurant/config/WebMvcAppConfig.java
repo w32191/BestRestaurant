@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+// 相當於mvc-servlet.xml的java程式組態
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.BestRestaurant")
@@ -18,7 +19,6 @@ public class WebMvcAppConfig implements WebMvcConfigurer {
   @Override
   public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
     configurer.enable();
-
   }
 
   @Bean
@@ -29,7 +29,6 @@ public class WebMvcAppConfig implements WebMvcConfigurer {
     irv1.setOrder(6);
     return irv1;
   }
-
 
 
   @Override

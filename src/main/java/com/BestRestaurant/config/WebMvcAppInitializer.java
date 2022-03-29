@@ -33,10 +33,10 @@ public class WebMvcAppInitializer extends AbstractAnnotationConfigDispatcherServ
     characterEncodingFilter.setEncoding("UTF-8");
     characterEncodingFilter.setForceEncoding(true);
 
-    OpenSessionInViewFilter osivf = new OpenSessionInViewFilter();
+//    OpenSessionInViewFilter osivf = new OpenSessionInViewFilter();
 
 
-    return new Filter[] {characterEncodingFilter, osivf};
+    return new Filter[] {characterEncodingFilter};
   }
 
 }

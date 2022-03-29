@@ -38,7 +38,7 @@ public class LoginController {
       errors.put("pwd", "請輸入密碼");
     }
 
-    if (errors != null && !errors.isEmpty()) {
+    if (!errors.isEmpty()) {
       return "login";
     }
 
@@ -68,7 +68,6 @@ public class LoginController {
   }
 
 
-
   // 修改密碼
   @GetMapping(path = "/toChangePwd")
   public String toChangePwdPage(HttpSession session) {
@@ -79,7 +78,6 @@ public class LoginController {
     } else {
       return "redirect:unLogin";
     }
-
   }
 
   @GetMapping("/index")
