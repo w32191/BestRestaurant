@@ -14,7 +14,6 @@ inputCurrentPassword.addEventListener('blur', function () {
   if (inputCurrentPassword.value === "") {
     checkSpan01.innerHTML = "不可空白！";
     checkSpan01.style = "color:red";
-
   }
 });
 

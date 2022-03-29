@@ -4,11 +4,46 @@ $(function () {
     $("#dialog").dialog('open');
   });
 
-$('.deleteBtn').click(function (){
-  if(!window.confirm("確定要刪除嗎？")){
-    $('.deleteBtn').attr("href","");
-  }
-});
+  let id;
+  $('.deleteBtn').click(function () {
+    // if(!window.confirm("確定要刪除嗎？")){
+    //   $('.deleteBtn').attr("href","");
+    // }
+    id = $(this).closest('tr').children('td:eq(0)').text();
+    $('#dialogDelete').dialog('open');
+
+  });
+
+  $('#dialogDelete').dialog({
+    autoOpen: false,
+    width: 350,
+    modal: true,
+    buttons: {
+      "刪除": function () {
+        // $.get("member.delete/id/" + id);
+        $.ajax({
+          url: "member.delete/id/" + id,
+          type: "GET",
+          success: function (res) {
+
+            if (res === 'success') {
+              $('#result-content').text("刪除成功");
+              $(`#delete${id}`).closest('tr').remove();
+            } else {
+              $('#result-content').text("刪除失敗");
+            }
+            $('#dialogResult').dialog();
+          }
+        });
+
+        $(this).dialog('close');
+
+      },
+      "取消": function () {
+        $(this).dialog('close');
+      }
+    }
+  });
 
   //新增帳號的dialog
   $("#dialog").dialog({
@@ -26,7 +61,8 @@ $('.deleteBtn').click(function (){
     }
   });
 
-  var updateIdValue, updateNameValue, updateAccountValue, updateGenderValue, updateAddressValue,
+  var updateIdValue, updateNameValue, updateAccountValue, updateGenderValue,
+      updateAddressValue,
       updateTelValue, updatePerssionValue;
 
   //Edit click時
@@ -47,11 +83,14 @@ $('.deleteBtn').click(function (){
     }
 
     if (updatePerssionValue === '管理者') {
-      $('#updatePerssion').find('option[value="99"]').attr("selected", "selected");
+      $('#updatePerssion').find('option[value="99"]').attr("selected",
+          "selected");
     } else if (updatePerssionValue === '一般帳號') {
-      $('#updatePerssion').find('option[value="1"]').attr("selected", "selected");
-    }else if(updatePerssionValue==='門市人員'){
-      $('#updatePerssion').find('option[value="2"]').attr("selected", "selected");
+      $('#updatePerssion').find('option[value="1"]').attr("selected",
+          "selected");
+    } else if (updatePerssionValue === '門市人員') {
+      $('#updatePerssion').find('option[value="2"]').attr("selected",
+          "selected");
     }
 
     $('#updateId').val(updateIdValue);
@@ -59,7 +98,6 @@ $('.deleteBtn').click(function (){
     $('#updateAccount').val(updateAccountValue);
     $('#updateAddress').val(updateAddressValue);
     $('#updateTel').val(updateTelValue);
-
 
     $('#dialogUpdate').dialog('open');
   });

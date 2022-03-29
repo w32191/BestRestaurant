@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.BestRestaurant.Entity.AccountBean;
 import com.BestRestaurant.Entity.MemberBean;
@@ -68,18 +69,20 @@ public class MemberController {
 
   // 點刪除帳號按鈕時
   @GetMapping("/member.delete/id/{id}")
+  @ResponseBody
   public String doDeleteMember(@PathVariable("id") String idStr, Model m) {
 
-    System.out.println("idstr:" + idStr);
     int id = Integer.parseInt(idStr);
     boolean result = memberDataService.deleteMember(id);
 
     if (result) {
-      m.addAttribute("daoResult", "DeleteSuccess");
-      return "redirect:/manageU";
+//      m.addAttribute("daoResult", "DeleteSuccess");
+//      return "redirect:/manageU";
+      return "success";
     } else {
-      m.addAttribute("daoResult", "DeleteFail");
-      return "redirect:/manageU";
+//      m.addAttribute("daoResult", "DeleteFail");
+//      return "redirect:/manageU";
+      return "fail";
     }
 
   }// end of doDeleteMember()
@@ -90,6 +93,7 @@ public class MemberController {
       @RequestParam("insertAccount") String account, @RequestParam("insertPwd") String pwd,
       @RequestParam("insertGender") int gender, @RequestParam("insertAddress") String address,
       @RequestParam("insertTel") String tel, @RequestParam("insertPerssion") int perssion,
+      @RequestParam(name = "isLogin", defaultValue = "true") String isLogin,
       Model m) {
 
     MemberBean member =
@@ -99,10 +103,14 @@ public class MemberController {
 
     if (result) {
       m.addAttribute("daoResult", "InsertSuccess");
-      return "redirect:/manageU";
     } else {
       m.addAttribute("daoResult", "InsertFail");
+    }
+
+    if (isLogin.equals("true")) {
       return "redirect:/manageU";
+    } else {
+      return "login";
     }
 
   }// end of insertMember()
@@ -116,11 +124,12 @@ public class MemberController {
       @RequestParam("updateTel") String updateTel,
       @RequestParam("updatePerssion") int updatePerssion, @RequestParam("updateId") int updateId,
       Model m) {
+
+    // 先將傳進來的資料 放進
     AccountBean newAccount = new AccountBean();
     newAccount.setId(updateId);
     newAccount.setAccount(updateAccount);
     newAccount.setPerssion(updatePerssion);
-
 
     MemberBean newMember = new MemberBean();
     newMember.setId(updateId);
