@@ -36,14 +36,13 @@ public class MemberDao {
     Session session = factory.getCurrentSession();
     String hqlStr = "from MemberBean where accountBean.id=:id";
     try {
-      MemberBean result =
-          session.createQuery(hqlStr, MemberBean.class).setParameter("id", id).uniqueResult();
+      MemberBean result = session.createQuery(hqlStr, MemberBean.class)
+          .setParameter("id", id).uniqueResult();
+
       session.delete(result);
       return true;
-
     } catch (Exception e) {
       e.printStackTrace();
-
       return false;
     }
 

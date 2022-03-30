@@ -16,26 +16,31 @@ public class LoginService {
   private AccountDao accountDao;
 
 
-  public Map<String, AccountBean> doLogin(AccountBean accountEntity) {
+  public Map<String, AccountBean> doLogin(AccountBean inputAccount) {
 
-    AccountBean result = accountDao.getAccountBeanByAccount(accountEntity.getAccount());
+    //先用輸入的account去資料庫找accountBean資料
+    AccountBean daoResult = accountDao.getAccountBeanByAccount(inputAccount.getAccount());
 
+    //放資料要傳給前端的Map
     Map<String, AccountBean> resultMap = new HashMap<String, AccountBean>();
 
-    if (result != null) {
+    //如果Dao找回來有資料的話
+    if (daoResult != null) {
 
-      if (!result.getPwd().equals(accountEntity.getPwd())) {
+      //判斷取回的密碼跟使用者輸入的密碼是否相等
+      if (!daoResult.getPwd().equals(inputAccount.getPwd())) {
         resultMap.put("密碼錯誤", null);
         return resultMap;
-
       } else {
-        resultMap.put("登入正確", result);
+        //帳號密碼都正確的話，把整筆accountBean放進Map回傳
+        resultMap.put("登入正確", daoResult);
         return resultMap;
-      }
+      } //end of inner if()
+
     } else {
       resultMap.put("無此帳號", null);
       return resultMap;
-    }
+    }//end of outer if()
 
   }// end of doLogin()
 

@@ -33,11 +33,11 @@ public class MemberBean {
   private String tel;
 
   @Transient
-  @Column(name = "account_id")
+  @Column(name = "fk_account_id")
   private int account_id;
 
   @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "account_id", referencedColumnName = "id")
+  @JoinColumn(name = "fk_account_id", referencedColumnName = "id")
   private AccountBean accountBean;
 
 

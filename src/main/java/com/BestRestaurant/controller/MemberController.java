@@ -68,16 +68,16 @@ public class MemberController {
 
 
   // 點刪除帳號按鈕時
-  @GetMapping("/member.delete/id/{id}/")
+  @GetMapping("/member.delete/id/{id}")
   @ResponseBody
-  public String doDeleteMember(@PathVariable("id") String idStr, Model m) {
-
+  public String doDeleteMember(@PathVariable("id") String idStr) {
+    System.out.println(idStr);
     int id = Integer.parseInt(idStr);
     boolean result = memberDataService.deleteMember(id);
 
     if (result) {
       return "success";
-    } else {;
+    } else {
       return "fail";
     }
 

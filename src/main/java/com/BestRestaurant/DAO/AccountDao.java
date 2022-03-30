@@ -62,10 +62,10 @@ public class AccountDao {
     return (int) id;
   }
 
-  public List getAllAccounts() {
+  public List<String> getAllAccounts() {
     Session session = factory.getCurrentSession();
     String hql = "SELECT a.account FROM AccountBean as a";
-    Query query = session.createQuery(hql);
+    Query<String> query = session.createQuery(hql,String.class);
     return query.getResultList();
   }
 

@@ -21,8 +21,8 @@ public class MemberDataService {
   private AccountDao accountDao;
 
   public List<MemberBean> manageMembers(int perssion, int id) {
-    // controller 呼叫時傳入現在登入的帳號的權限＆ID
 
+    // controller 呼叫時傳入現在登入的帳號的權限＆ID
     if (perssion > 98) { // 如為管理者回傳全部的帳號資訊
 
       return memberDao.getAllMembers();
@@ -50,34 +50,40 @@ public class MemberDataService {
     AccountBean result = accountDao.getAccountBeanByAccount(member.getAccountBean().getAccount());
 
     if (result == null) {
-      memberDao.insertMember(member);
-      return true;
+
+      return memberDao.insertMember(member);
     } else {
+      //已有帳號
       return false;
     }
   } // end of insertMember()
 
 
   public boolean updateMember(MemberBean newMember) {
-    // 先查詢是否已經有這個帳號
-    AccountBean result = accountDao.getAccountById(
-        newMember.getId());
+    // 用ID將這個帳號資料從DB取出
+    AccountBean daoResult = accountDao.getAccountById(newMember.getId());
 
     MemberBean oldMember;
 
-    if (result.getId() == newMember.getId() &&
-        result.getAccount().equals(newMember.getAccountBean().getAccount())) {
-      //表示沒有要更動帳號
+    if (daoResult.getId() == newMember.getId() &&
+        daoResult.getAccount().equals(newMember.getAccountBean().getAccount())) {
+      //如果輸入的id跟account都相同，表示沒有要更改account
       oldMember = memberDao.getMemberById(newMember.getId());
 
     } else {
 
-      oldMember = result.getMemberBean();
-      List<AccountBean> accountList = accountDao.getAllAccounts();
+      //如果有換account，要先把原本的memberBean取出來
+      oldMember = daoResult.getMemberBean();
+
+      //先從DB取出所有的帳號字串
+      List<String> accountList = accountDao.getAllAccounts();
+
+      // 檢查新輸入的帳號，在資料庫是否已有相同帳號，若有return false
       if (accountList.contains(newMember.getAccountBean().getAccount())) {
         return false;
       }
-    }
+    } //end of if()
+
     oldMember.getAccountBean().setAccount(newMember.getAccountBean().getAccount());
     oldMember.getAccountBean().setPerssion(newMember.getAccountBean().getPerssion());
     oldMember.setGender(newMember.getGender());
@@ -86,8 +92,6 @@ public class MemberDataService {
     oldMember.setTel(newMember.getTel());
 
     return memberDao.updateMember(oldMember);
-
-
   }// end of updateMember()
 
 }
