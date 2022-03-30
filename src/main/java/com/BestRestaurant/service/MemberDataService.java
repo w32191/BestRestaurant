@@ -60,24 +60,32 @@ public class MemberDataService {
 
   public boolean updateMember(MemberBean newMember) {
     // 先查詢是否已經有這個帳號
-    AccountBean result = accountDao.getAccountBeanByAccount(
-        newMember.getAccountBean().getAccount());
-    if (result == null) {
-      // 從資料庫取出原有的資料
-      MemberBean oldMember = memberDao.getMemberById(newMember.getId());
-      System.out.println("ID : " + oldMember.getId());
+    AccountBean result = accountDao.getAccountById(
+        newMember.getId());
 
-      oldMember.getAccountBean().setAccount(newMember.getAccountBean().getAccount());
-      oldMember.getAccountBean().setPerssion(newMember.getAccountBean().getPerssion());
-      oldMember.setGender(newMember.getGender());
-      oldMember.setName(newMember.getName());
-      oldMember.setAddress(newMember.getAddress());
-      oldMember.setTel(newMember.getTel());
-      memberDao.updateMember(oldMember);
-      return true;
+    MemberBean oldMember;
+
+    if (result.getId() == newMember.getId() &&
+        result.getAccount().equals(newMember.getAccountBean().getAccount())) {
+      //表示沒有要更動帳號
+      oldMember = memberDao.getMemberById(newMember.getId());
+
     } else {
-      return false;
+
+      oldMember = result.getMemberBean();
+      List<AccountBean> accountList = accountDao.getAllAccounts();
+      if (accountList.contains(newMember.getAccountBean().getAccount())) {
+        return false;
+      }
     }
+    oldMember.getAccountBean().setAccount(newMember.getAccountBean().getAccount());
+    oldMember.getAccountBean().setPerssion(newMember.getAccountBean().getPerssion());
+    oldMember.setGender(newMember.getGender());
+    oldMember.setName(newMember.getName());
+    oldMember.setAddress(newMember.getAddress());
+    oldMember.setTel(newMember.getTel());
+
+    return memberDao.updateMember(oldMember);
 
 
   }// end of updateMember()

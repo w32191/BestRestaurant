@@ -68,12 +68,9 @@ public class MemberDao {
   public boolean updateMember(MemberBean member) {
     Session session = factory.getCurrentSession();
     try {
-      session.saveOrUpdate(member);
-      System.out.println("update secces!!");
+      session.save(member);
       return true;
     } catch (Exception e) {
-      System.out.println("Soething wrong!!!!");
-      e.printStackTrace();
       return false;
     }
   }// end of updateMember()

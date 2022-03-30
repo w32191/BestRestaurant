@@ -1,33 +1,31 @@
 $(function () {
 
+  //新增帳號按鈕
   $("#insertBtn").click(function () {
     $("#dialog").dialog('open');
   });
 
   let id;
   $('.deleteBtn').click(function () {
-    // if(!window.confirm("確定要刪除嗎？")){
-    //   $('.deleteBtn').attr("href","");
-    // }
+    //點刪除時先取得該筆資料的id
     id = $(this).closest('tr').children('td:eq(0)').text();
     $('#dialogDelete').dialog('open');
-
   });
 
+  //刪除的dialog
   $('#dialogDelete').dialog({
     autoOpen: false,
     width: 350,
     modal: true,
     buttons: {
       "刪除": function () {
-        // $.get("member.delete/id/" + id);
         $.ajax({
           url: "member.delete/id/" + id,
           type: "GET",
           success: function (res) {
-
             if (res === 'success') {
               $('#result-content').text("刪除成功");
+              //將畫面上該行<tr>元素給remove掉
               $(`#delete${id}`).closest('tr').remove();
             } else {
               $('#result-content').text("刪除失敗");
@@ -37,7 +35,6 @@ $(function () {
         });
 
         $(this).dialog('close');
-
       },
       "取消": function () {
         $(this).dialog('close');
@@ -62,12 +59,12 @@ $(function () {
   });
 
   var updateIdValue, updateNameValue, updateAccountValue, updateGenderValue,
-      updateAddressValue,
-      updateTelValue, updatePerssionValue;
+      updateAddressValue, updateTelValue, updatePerssionValue;
 
   //Edit click時
   $('.templatemo-edit-btn.edit1').click(function () {
 
+    //先抓到點下編輯按鈕的該行<tr>中，全部的資料
     updateIdValue = $(this).closest('tr').children('td:eq(0)').text();
     updateNameValue = $(this).closest('tr').children('td:eq(1)').text();
     updateAccountValue = $(this).closest('tr').children('td:eq(2)').text();
@@ -93,6 +90,7 @@ $(function () {
           "selected");
     }
 
+    // 將該行資料
     $('#updateId').val(updateIdValue);
     $('#updateName').val(updateNameValue);
     $('#updateAccount').val(updateAccountValue);
@@ -101,6 +99,8 @@ $(function () {
 
     $('#dialogUpdate').dialog('open');
   });
+
+  //update的dialog
   $('#dialogUpdate').dialog({
     autoOpen: false,
     buttons: {

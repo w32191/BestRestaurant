@@ -1,6 +1,7 @@
 package com.BestRestaurant.DAO;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -61,6 +62,12 @@ public class AccountDao {
     return (int) id;
   }
 
+  public List getAllAccounts() {
+    Session session = factory.getCurrentSession();
+    String hql = "SELECT a.account FROM AccountBean as a";
+    Query query = session.createQuery(hql);
+    return query.getResultList();
+  }
 
 
 }

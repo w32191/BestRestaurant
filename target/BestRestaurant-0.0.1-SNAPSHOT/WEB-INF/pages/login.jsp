@@ -22,7 +22,7 @@
       }
     </style>
     <!-- jQuery -->
-    <script type="text/javascript" src="static/js/jquery-3.6.0.min.js"></script>
+    <script src="static/js/jquery-3.6.0.min.js"></script>
     <script src="static/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
     <script src="static/js/login.js"></script>
 </head>
