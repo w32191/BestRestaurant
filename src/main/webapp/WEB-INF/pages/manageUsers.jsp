@@ -101,13 +101,10 @@
                                         <td>未知</td>
                                     </c:otherwise>
                                 </c:choose>
-                                <td><a class="templatemo-edit-btn edit1">Edit</a></td>
+                                <td><input type="button" class="templatemo-edit-btn edit1"
+                                           value="Edit"></td>
                                 <c:if test="${accountBean.perssion gt 97}">
                                     <td>
-                                            <%--   <a href="member.delete/id/${member.accountBean.id}"--%>
-                                            <%--    class="templatemo-del-btn deleteBtn">Delete</a>--%>
-                                            <%--    <a href="" class="templatemo-del-btn deleteBtn"--%>
-                                            <%--       id="delete${member.accountBean.id}">Delete</a>--%>
                                         <input type="button" class="templatemo-del-btn deleteBtn"
                                                id="delete${member.accountBean.id}" value="Delete">
                                     </td>

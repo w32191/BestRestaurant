@@ -1,14 +1,18 @@
 $(function () {
+
+  //管理者帳號一鍵輸入
   $('#adminBtn').click(function () {
     $('#accountInput').val('admin');
     $('#pwdInput').val('aa');
   });
 
+  //使用者帳號一鍵輸入
   $('#userBtn').click(function () {
     $('#accountInput').val('user');
     $('#pwdInput').val('uu');
   });
 
+  //註冊按鈕,open dialog
   $("#insertBtn").click(function () {
     $("#dialog").dialog('open');
   });
