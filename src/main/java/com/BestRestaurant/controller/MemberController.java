@@ -68,7 +68,7 @@ public class MemberController {
 
 
   // 點刪除帳號按鈕時
-  @GetMapping("/member.delete/id/{id}")
+  @GetMapping("/member.delete/id/{id}/")
   @ResponseBody
   public String doDeleteMember(@PathVariable("id") String idStr, Model m) {
 
@@ -76,12 +76,8 @@ public class MemberController {
     boolean result = memberDataService.deleteMember(id);
 
     if (result) {
-//      m.addAttribute("daoResult", "DeleteSuccess");
-//      return "redirect:/manageU";
       return "success";
-    } else {
-//      m.addAttribute("daoResult", "DeleteFail");
-//      return "redirect:/manageU";
+    } else {;
       return "fail";
     }
 

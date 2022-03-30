@@ -25,6 +25,7 @@ $(function () {
           success: function (res) {
             if (res === 'success') {
               $('#result-content').text("刪除成功");
+              //將畫面上該行<tr>元素給remove掉
               $(`#delete${id}`).closest('tr').remove();
             } else {
               $('#result-content').text("刪除失敗");
@@ -58,12 +59,12 @@ $(function () {
   });
 
   var updateIdValue, updateNameValue, updateAccountValue, updateGenderValue,
-      updateAddressValue,
-      updateTelValue, updatePerssionValue;
+      updateAddressValue, updateTelValue, updatePerssionValue;
 
   //Edit click時
   $('.templatemo-edit-btn.edit1').click(function () {
 
+    //先抓到點下編輯按鈕的該行<tr>中，全部的資料
     updateIdValue = $(this).closest('tr').children('td:eq(0)').text();
     updateNameValue = $(this).closest('tr').children('td:eq(1)').text();
     updateAccountValue = $(this).closest('tr').children('td:eq(2)').text();
@@ -89,6 +90,7 @@ $(function () {
           "selected");
     }
 
+    // 將該行資料
     $('#updateId').val(updateIdValue);
     $('#updateName').val(updateNameValue);
     $('#updateAccount').val(updateAccountValue);
